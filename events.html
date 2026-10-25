@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events & Programs | Immigrant Mobility Connect</title>
+    <link rel="stylesheet" href="migrant.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           EVENTS & PROGRAMS PAGE STYLES
+           ========================================= */
+        
+        /* Page Hero */
+        .page-hero {
+            position: relative;
+            min-height: 65vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .hero-background {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: slowZoom 40s ease-in-out infinite alternate;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(44, 30, 30, 0.8) 0%, rgba(176, 109, 109, 0.5) 100%);
+        }
+
+        .hero-content-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 4rem 2rem;
+        }
+
+        .hero-text {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1.5rem;
+            padding: 0.5rem 1.5rem;
+            background: rgba(176, 109, 109, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 500;
+            color: #fff;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-text h1 em {
+            font-style: italic;
+            color: #F5EBEB;
+            font-weight: 400;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 8rem 0;
+            background: #FFFFFF;
+            position: relative;
+        }
+
+        .services-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #EBE0E0, transparent);
+        }
+
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .split-layout.reverse {
+            direction: rtl;
+        }
+
+        .split-layout.reverse > * {
+            direction: ltr;
+        }
+
+        .split-image {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(176, 109, 109, 0.15);
+            height: 500px;
+        }
+
+        .split-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .split-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .split-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: #2C1E1E;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .split-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .split-content ul li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+            color: #6B5555;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .split-content ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #B06D6D 0%, #965353 100%);
+            box-shadow: 0 0 12px rgba(176, 109, 109, 0.4);
+        }
+
+        .split-content ul li strong {
+            color: #2C1E1E;
+            font-weight: 600;
+            display: inline;
+        }
+
+        /* Impact Section */
+        .impact-section {
+            padding: 8rem 0;
+            background: linear-gradient(180deg, #F9F5F5 0%, #FFFFFF 100%);
+            position: relative;
+        }
+
+        .impact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #EBE0E0, transparent);
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .impact-image {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(176, 109, 109, 0.15);
+            height: 500px;
+        }
+
+        .impact-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .impact-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .impact-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: #2C1E1E;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .impact-content p {
+            color: #6B5555;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .impact-stat {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, rgba(176, 109, 109, 0.1) 0%, rgba(176, 109, 109, 0.05) 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(176, 109, 109, 0.2);
+            margin-top: 1rem;
+        }
+
+        .impact-stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #B06D6D;
+            line-height: 1;
+        }
+
+        .impact-stat-label {
+            font-size: 0.9rem;
+            color: #6B5555;
+            font-weight: 500;
+        }
+
+        /* How to Help Section */
+        .help-section {
+            padding: 8rem 0;
+            background: #FFFFFF;
+            position: relative;
+        }
+
+        .help-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #EBE0E0, transparent);
+        }
+
+        .help-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem auto;
+        }
+
+        .help-header .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #B06D6D;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1.5rem;
+            padding: 0.6rem 1.5rem;
+            background: rgba(176, 109, 109, 0.1);
+            border-radius: 50px;
+            border: 1px solid rgba(176, 109, 109, 0.2);
+        }
+
+        .help-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: #2C1E1E;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .help-header p {
+            color: #6B5555;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .help-card {
+            background: #FFFFFF;
+            border-radius: 24px;
+            padding: 2.5rem;
+            border: 1px solid #F0E6E6;
+            transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .help-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #B06D6D 0%, #965353 100%);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .help-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .help-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px rgba(176, 109, 109, 0.12);
+            border-color: rgba(176, 109, 109, 0.3);
+        }
+
+        .help-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, rgba(176, 109, 109, 0.15) 0%, rgba(176, 109, 109, 0.05) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #B06D6D;
+            margin-bottom: 1.5rem;
+            transition: all 0.4s ease;
+        }
+
+        .help-card:hover .help-icon {
+            background: linear-gradient(135deg, #B06D6D 0%, #965353 100%);
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .help-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2C1E1E;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .help-card p {
+            color: #6B5555;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Community Photo Section */
+        .community-section {
+            padding: 0 0 8rem 0;
+            background: #FFFFFF;
+        }
+
+        .community-image {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(176, 109, 109, 0.15);
+            height: 500px;
+        }
+
+        .community-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .split-layout,
+            .impact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .split-layout.reverse {
+                direction: ltr;
+            }
+
+            .split-image,
+            .impact-image {
+                height: 400px;
+            }
+
+            .help-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-hero { min-height: 55vh; }
+            .hero-content-container { padding: 3rem 1.5rem; }
+            .hero-text h1 { font-size: 2rem; }
+            .hero-text p { font-size: 1.05rem; }
+            
+            .services-section,
+            .impact-section,
+            .help-section,
+            .community-section {
+                padding: 5rem 0;
+            }
+
+            .split-image,
+            .impact-image {
+                height: 300px;
+            }
+
+            .community-image {
+                height: 300px;
+            }
+
+            .help-card {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-link">
+                <img src="logo.png" alt="Logo" class="logo-image">
+                <span class="logo-text"></span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="community.html">Community</a></li>
+                    <li><a href="settlement.html">Settlement</a></li>
+                    <li><a href="employment.html">Employment</a></li>
+                    <li><a href="events.html" class="active">Events & Programs</a></li>
+                    <li><a href="services.html">Services</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="page-hero">
+        <div class="hero-background">
+            <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=1920&auto=format&fit=crop" alt="Community event and gathering" class="hero-image">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container hero-content-container">
+            <div class="hero-text fade-up">
+                <span class="hero-label">Making a Difference Together</span>
+                <h1>Events & Programs That <em>Transform Lives</em></h1>
+                <p>From food distribution to community gatherings, our programs provide essential support and foster connection for newcomers and Canadians alike.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="services-section">
+        <div class="container">
+            <div class="split-layout">
+                <div class="split-image fade-up">
+                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1200&auto=format&fit=crop" alt="Food distribution and community support">
+                </div>
+                <div class="split-content fade-up delay-1">
+                    <h2>Services Offered</h2>
+                    <ul>
+                        <li><strong>Food Distribution:</strong> Fresh produce, non-perishable groceries, and culturally appropriate meal kits are provided through weekly food banks, mobile outreach units, and emergency hampers.</li>
+                        <li><strong>Clothing Support:</strong> We distribute seasonally appropriate clothing for all ages, including coats, shoes, workwear, and children's items, ensuring warmth, dignity, and readiness for school or work.</li>
+                        <li><strong>Everyday Living Essentials:</strong> We offer hygiene kits, household items, baby supplies, feminine hygiene products, and other necessities that promote comfort, health, and cleanliness.</li>
+                        <li><strong>Emergency Support Packages:</strong> For individuals in crisis (e.g., fire victims, new refugees, survivors of domestic violence), we provide ready-to-go care packages containing essential goods for temporary relief and recovery.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DISTRIBUTION CHANNELS SECTION -->
+    <section class="services-section" style="background: linear-gradient(180deg, #F9F5F5 0%, #FFFFFF 100%);">
+        <div class="container">
+            <div class="split-layout reverse">
+                <div class="split-image fade-up">
+                    <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=1200&auto=format&fit=crop" alt="Community distribution event">
+                </div>
+                <div class="split-content fade-up delay-1">
+                    <h2>Distribution Channels</h2>
+                    <ul>
+                        <li><strong>Community Hub Pick-Up:</strong> Items can be accessed at our centrally located community center during scheduled distribution days.</li>
+                        <li><strong>Mobile Outreach Service:</strong> For those who are housebound or without transportation, we bring items directly to them through our mobile delivery program.</li>
+                        <li><strong>Pop-Up Events & Partnerships:</strong> We partner with shelters, schools, churches, and settlement agencies to host regular pop-up events that bring supplies to where they're needed most.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACT SECTION -->
+    <section class="impact-section">
+        <div class="container">
+            <div class="impact-grid">
+                <div class="impact-image fade-up">
+                    <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?q=80&w=1200&auto=format&fit=crop" alt="Community volunteers and impact">
+                </div>
+                <div class="impact-content fade-up delay-1">
+                    <h2>Our Impact</h2>
+                    <p>Since its inception, the Essential Support Program has reached thousands of individuals annually. Beyond meeting physical needs, our program helps restore hope, dignity, and a sense of community for those experiencing hardship.</p>
+                    <p>By addressing the foundational needs of our neighbors, we empower them to take further steps toward stability, self-sufficiency, and wellness.</p>
+                    <div class="impact-stat">
+                        <div class="impact-stat-number">100K+</div>
+                        <div class="impact-stat-label">Individuals<br>Supported Annually</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW TO HELP SECTION -->
+    <section class="help-section">
+        <div class="container">
+            <div class="help-header fade-up">
+                <span class="section-label">Get Involved</span>
+                <h2>How to Help</h2>
+                <p>This vital work is made possible through the generosity of donors, volunteers, and community partners. You can support our mission by:</p>
+            </div>
+
+            <div class="help-grid">
+                <div class="help-card fade-up delay-1">
+                    <div class="help-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </div>
+                    <h3>Donate Items</h3>
+                    <p>Donate new or gently used items including clothing, food, hygiene products, and household essentials to support those in need.</p>
+                </div>
+
+                <div class="help-card fade-up delay-2">
+                    <div class="help-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <h3>Volunteer</h3>
+                    <p>Join our team of dedicated volunteers at distribution events, community gatherings, and outreach programs to make a direct impact.</p>
+                </div>
+
+                <div class="help-card fade-up delay-3">
+                    <div class="help-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <h3>Partner With Us</h3>
+                    <p>Partner with us to host collection drives, co-organize events, or collaborate on programs that expand our reach and impact.</p>
+                </div>
+
+                <div class="help-card fade-up delay-4">
+                    <div class="help-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    </div>
+                    <h3>Contribute Financially</h3>
+                    <p>Your financial contributions help us expand our reach, purchase essential supplies, and ensure no one is left behind.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 4rem;">
+                <p style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #2C1E1E; font-style: italic;">Together, we can ensure no one is left behind.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMUNITY PHOTO SECTION -->
+    <section class="community-section">
+        <div class="container">
+            <div class="community-image fade-up">
+                <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=1920&auto=format&fit=crop" alt="Community gathering and celebration">
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <p>Empowering everyone through comprehensive community services.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                        <a href="#" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                        <a href="#" aria-label="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"></path></svg></a>
+                        <a href="#" aria-label="X"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <p class="footer-label">Phone number</p>
+                    <p class="footer-info">+1 647-606-6542</p>
+                    <p class="footer-label" style="margin-top: 1.5rem;">Email</p>
+                    <a href="mailto:Immigrantmobility@yahoo.com" class="footer-info footer-link">Immigrantmobility@yahoo.com</a>
+                </div>
+                <div class="footer-col">
+                    <p class="footer-label">MENTORSHIP</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Your email for contact" required>
+                        <button type="submit">Submit your support request</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="migrant.js"></script>
+</body>
+</html>

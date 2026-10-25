@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Immigrant Mobility Connect</title>
+    <link rel="stylesheet" href="migrant.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           SERVICES PAGE STYLES
+           ========================================= */
+        
+        /* Page Hero */
+        .page-hero {
+            position: relative;
+            min-height: 65vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .hero-background {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: slowZoom 40s ease-in-out infinite alternate;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(44, 30, 30, 0.85) 0%, rgba(176, 109, 109, 0.55) 100%);
+        }
+
+        .hero-content-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 4rem 2rem;
+        }
+
+        .hero-text {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1.5rem;
+            padding: 0.5rem 1.5rem;
+            background: rgba(176, 109, 109, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 500;
+            color: #fff;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-text h1 em {
+            font-style: italic;
+            color: #F5EBEB;
+            font-weight: 400;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Employment Services Intro */
+        .services-intro {
+            padding: 8rem 0 4rem;
+            background: #FFFFFF;
+            text-align: center;
+            position: relative;
+        }
+
+        .services-intro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #EBE0E0, transparent);
+        }
+
+        .services-intro .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #B06D6D;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1.5rem;
+            padding: 0.6rem 1.5rem;
+            background: rgba(176, 109, 109, 0.1);
+            border-radius: 50px;
+            border: 1px solid rgba(176, 109, 109, 0.2);
+        }
+
+        .services-intro h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: #2C1E1E;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .services-intro p {
+            color: #6B5555;
+            font-size: 1.15rem;
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Service Cards Section */
+        .service-cards-section {
+            padding: 4rem 0 8rem;
+            background: #FFFFFF;
+        }
+
+        .service-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card-large {
+            background: linear-gradient(135deg, #F5EBEB 0%, #FFFFFF 100%);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid #F0E6E6;
+            transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card-large:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px rgba(176, 109, 109, 0.15);
+            border-color: rgba(176, 109, 109, 0.3);
+        }
+
+        .service-card-content {
+            padding: 2.5rem;
+            flex-grow: 1;
+        }
+
+        .service-card-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #2C1E1E;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .service-card-content p {
+            color: #6B5555;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .service-card-image {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .service-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .service-card-large:hover .service-card-image img {
+            transform: scale(1.06);
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            position: relative;
+            padding: 8rem 0;
+            overflow: hidden;
+        }
+
+        .testimonials-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .testimonials-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonials-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(44, 30, 30, 0.92) 0%, rgba(74, 32, 32, 0.88) 100%);
+        }
+
+        .testimonials-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonials-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 5rem auto;
+        }
+
+        .testimonials-header .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #F5EBEB;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1.5rem;
+            padding: 0.6rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .testimonials-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: #fff;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .testimonials-header p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 3rem;
+            transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .testimonial-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .testimonial-stars {
+            display: flex;
+            gap: 0.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-stars svg {
+            width: 20px;
+            height: 20px;
+            color: #F5EBEB;
+            fill: #F5EBEB;
+        }
+
+        .testimonial-text {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-author-info h4 {
+            color: #fff;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .testimonial-author-info p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .service-cards-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-hero { min-height: 55vh; }
+            .hero-content-container { padding: 3rem 1.5rem; }
+            .hero-text h1 { font-size: 2rem; }
+            .hero-text p { font-size: 1.05rem; }
+            
+            .services-intro { padding: 5rem 0 3rem; }
+            .service-cards-section { padding: 2rem 0 5rem; }
+            .service-card-content { padding: 2rem; }
+            .service-card-content h3 { font-size: 1.4rem; }
+            .service-card-image { height: 240px; }
+            
+            .testimonials-section { padding: 5rem 0; }
+            .testimonial-card { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-link">
+                <img src="logo.png" alt="Logo" class="logo-image">
+                <span class="logo-text"></span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="community.html">Community</a></li>
+                    <li><a href="settlement.html">Settlement</a></li>
+                    <li><a href="employment.html">Employment</a></li>
+                    <li><a href="events.html">Events & Programs</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="page-hero">
+        <div class="hero-background">
+            <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1920&auto=format&fit=crop" alt="Professional team collaboration" class="hero-image">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container hero-content-container">
+            <div class="hero-text fade-up">
+                <span class="hero-label">Comprehensive Support</span>
+                <h1>Empowering Our Communities <em>Together</em></h1>
+                <p>Join us in supporting newcomers through employment, mentorship, and community integration for a brighter future.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES INTRO -->
+    <section class="services-intro">
+        <div class="container">
+            <div class="fade-up">
+                <span class="section-label">What We Offer</span>
+                <h2>Employment Support Services</h2>
+                <p>Empowering people through job placement, skills training, and mentorship for successful integration into the workforce.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICE CARDS -->
+    <section class="service-cards-section">
+        <div class="container">
+            <div class="service-cards-grid">
+                
+                <!-- Service Card 1 -->
+                <article class="service-card-large fade-up delay-1">
+                    <div class="service-card-content">
+                        <h3>Skills Development Training</h3>
+                        <p>Our training programs enhance skills, ensuring newcomers are competitive and prepared for the job market. From technical certifications to soft skills workshops, we provide comprehensive training tailored to industry demands.</p>
+                    </div>
+                    <div class="service-card-image">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1200&auto=format&fit=crop" alt="Skills development training session">
+                    </div>
+                </article>
+
+                <!-- Service Card 2 -->
+                <article class="service-card-large fade-up delay-2">
+                    <div class="service-card-content">
+                        <h3>Job Placement Assistance</h3>
+                        <p>We connect communities with job opportunities tailored to their skills and experience for successful employment. Our dedicated team works closely with employers to match qualified candidates with the right positions.</p>
+                    </div>
+                    <div class="service-card-image">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop" alt="Job placement and career counseling">
+                    </div>
+                </article>
+
+                <!-- Service Card 3 -->
+                <article class="service-card-large fade-up delay-3">
+                    <div class="service-card-content">
+                        <h3>Professional Mentorship</h3>
+                        <p>One-on-one guidance from experienced professionals who understand the challenges of building a career in a new country. Our mentors provide industry insights, networking connections, and personalized career advice.</p>
+                    </div>
+                    <div class="service-card-image">
+                        <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?q=80&w=1200&auto=format&fit=crop" alt="Professional mentorship session">
+                    </div>
+                </article>
+
+                <!-- Service Card 4 -->
+                <article class="service-card-large fade-up delay-4">
+                    <div class="service-card-content">
+                        <h3>Community Integration</h3>
+                        <p>Programs designed to help newcomers build meaningful connections within their communities. Through cultural events, networking opportunities, and social support, we foster a sense of belonging and mutual understanding.</p>
+                    </div>
+                    <div class="service-card-image">
+                        <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=1200&auto=format&fit=crop" alt="Community integration event">
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="testimonials-section">
+        <div class="testimonials-bg">
+            <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1920&auto=format&fit=crop" alt="Community support background">
+            <div class="testimonials-overlay"></div>
+        </div>
+        <div class="container testimonials-container">
+            <div class="testimonials-header fade-up">
+                <span class="section-label">Success Stories</span>
+                <h2>What Our Community Says</h2>
+                <p>Real stories from individuals whose lives have been transformed through our programs and services.</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card fade-up delay-1">
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                    </div>
+                    <p class="testimonial-text">MobilityConnect transformed my life; their support in finding employment was invaluable and life-changing. The team went above and beyond to help me secure a position in my field.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" alt="John Daniel">
+                        </div>
+                        <div class="testimonial-author-info">
+                            <h4>John Daniel</h4>
+                            <p>Software Engineer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card fade-up delay-2">
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                    </div>
+                    <p class="testimonial-text">The mentorship program helped me integrate into the community and build a network of support. I now feel confident and connected in my new home.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop" alt="Joyce Perry">
+                        </div>
+                        <div class="testimonial-author-info">
+                            <h4>Joyce Perry</h4>
+                            <p>Healthcare Professional</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <p>Empowering everyone through comprehensive community services.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                        <a href="#" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                        <a href="#" aria-label="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"></path></svg></a>
+                        <a href="#" aria-label="X"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <p class="footer-label">Phone number</p>
+                    <p class="footer-info">+1 647-606-6542</p>
+                    <p class="footer-label" style="margin-top: 1.5rem;">Email</p>
+                    <a href="mailto:Immigrantmobility@yahoo.com" class="footer-info footer-link">Immigrantmobility@yahoo.com</a>
+                </div>
+                <div class="footer-col">
+                    <p class="footer-label">MENTORSHIP</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Your email for contact" required>
+                        <button type="submit">Submit your support request</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="migrant.js"></script>
+</body>
+</html>

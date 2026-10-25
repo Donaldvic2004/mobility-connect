@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settlement | Immigrant Mobility Connect</title>
+    <link rel="stylesheet" href="migrant.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           SETTLEMENT PAGE STYLES - COMPLETE & FIXED
+           ========================================= */
+        
+        /* Page Hero */
+        .page-hero {
+            position: relative;
+            min-height: 65vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .hero-background {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: slowZoom 40s ease-in-out infinite alternate;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(44, 30, 30, 0.7) 0%, rgba(176, 109, 109, 0.4) 100%);
+        }
+
+        .hero-content-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 4rem 2rem;
+        }
+
+        .hero-text {
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1.5rem;
+            padding: 0.5rem 1.5rem;
+            background: rgba(176, 109, 109, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 500;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-text h1 em {
+            font-style: italic;
+            color: #F5EBEB;
+            font-weight: 400;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            padding: 7rem 0 4rem;
+            background: #FFFFFF;
+            text-align: center;
+        }
+
+        .intro-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #2C1E1E;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .intro-section p {
+            font-size: 1.15rem;
+            color: #6B5555;
+            line-height: 1.7;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* Services Grid */
+        .services-section {
+            padding: 2rem 0 7rem;
+            background: #FFFFFF;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: #FFFFFF;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid #F0E6E6;
+            transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px rgba(176, 109, 109, 0.12);
+            border-color: rgba(176, 109, 109, 0.3);
+        }
+
+        .service-image {
+            position: relative;
+            height: 320px;
+            overflow: hidden;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.06);
+        }
+
+        .service-icon-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #B06D6D;
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .service-card:hover .service-icon-btn {
+            background: #B06D6D;
+            color: #fff;
+            transform: translateX(6px);
+            box-shadow: 0 8px 20px rgba(176, 109, 109, 0.3);
+        }
+
+        .service-body {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .service-body h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #2C1E1E;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .service-body p {
+            color: #6B5555;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* =========================================
+           MODERN LOCATION SECTION - FIXED LAYOUT
+           ========================================= */
+        .location-section {
+            padding: 8rem 0;
+            background: linear-gradient(180deg, #FFFFFF 0%, #F9F5F5 50%, #FFFFFF 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .location-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #EBE0E0, transparent);
+        }
+
+        .location-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 5rem auto;
+        }
+
+        .location-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #B06D6D;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1.5rem;
+            padding: 0.6rem 1.5rem;
+            background: rgba(176, 109, 109, 0.1);
+            border-radius: 50px;
+            border: 1px solid rgba(176, 109, 109, 0.2);
+        }
+
+        .location-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: #2C1E1E;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .location-header p {
+            color: #6B5555;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        .location-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* 2x2 Grid for Info Cards */
+        .info-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .info-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.75rem;
+            background: #FFFFFF;
+            border-radius: 16px;
+            border: 1px solid #F0E6E6;
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(176, 109, 109, 0.3);
+            box-shadow: 0 12px 32px rgba(176, 109, 109, 0.1);
+        }
+
+        .info-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, rgba(176, 109, 109, 0.15) 0%, rgba(176, 109, 109, 0.05) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #B06D6D;
+            flex-shrink: 0;
+        }
+
+        .info-content h4 {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #B06D6D;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-content p {
+            color: #2C1E1E;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .directions-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1.1rem 2.5rem;
+            background: linear-gradient(135deg, #B06D6D 0%, #965353 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow: 0 8px 24px rgba(176, 109, 109, 0.3);
+            align-self: flex-start;
+        }
+
+        .directions-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(176, 109, 109, 0.4);
+            gap: 1rem;
+        }
+
+        .directions-btn svg {
+            transition: transform 0.4s ease;
+        }
+
+        .directions-btn:hover svg {
+            transform: translateX(4px);
+        }
+
+        .location-map {
+            position: relative;
+            width: 100%;
+        }
+
+        .map-container {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(176, 109, 109, 0.15);
+            border: 1px solid #F0E6E6;
+            height: 600px;
+            background: #F9F5F5;
+            width: 100%;
+        }
+
+        .map-badge {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.25rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #B06D6D;
+            z-index: 10;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+
+        .map-badge svg {
+            width: 16px;
+            height: 16px;
+            color: #B06D6D;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: grayscale(15%) contrast(1.05) saturate(0.9);
+            transition: filter 0.5s ease;
+        }
+
+        .map-container:hover iframe {
+            filter: grayscale(0%) contrast(1.1) saturate(1);
+        }
+
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .services-grid { grid-template-columns: 1fr; }
+            
+            .location-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .info-cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .map-container {
+                height: 450px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-hero { min-height: 55vh; }
+            .hero-content-container { padding: 3rem 1.5rem; }
+            .hero-text h1 { font-size: 2.2rem; }
+            .hero-text p { font-size: 1.05rem; }
+            
+            .intro-section { padding: 5rem 0 3rem; }
+            .services-section { padding: 1rem 0 5rem; }
+            .service-image { height: 260px; }
+            .service-body { padding: 2rem; }
+            .service-body h3 { font-size: 1.4rem; }
+            
+            .location-section { padding: 5rem 0; }
+            .location-header { margin-bottom: 3rem; }
+            
+            .info-cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .info-card { padding: 1.25rem; }
+            .map-container { height: 350px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-link">
+                <img src="logo.png" alt="Logo" class="logo-image">
+                <span class="logo-text"></span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="community.html">Community</a></li>
+                    <li><a href="settlement.html" class="active">Settlement</a></li>
+                    <li><a href="employment.html">Employment</a></li>
+                    <li><a href="events.html">Events & Programs</a></li>
+                    <li><a href="#">Services</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION - CN Tower Toronto -->
+    <section class="page-hero">
+        <div class="hero-background">
+            <img src="https://images.unsplash.com/photo-1517935706615-2717063c2225?q=80&w=1920&auto=format&fit=crop" alt="CN Tower Toronto - Iconic Canadian Landmark" class="hero-image">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container hero-content-container">
+            <div class="hero-text fade-up">
+                <span class="hero-label">Your journey starts here</span>
+                <h1>Empowering Individuals<br>and <em>Groups</em></h1>
+                <p>Comprehensive support for settlement and resettlement, employment, education, mentorship, health care, wellbeing and mental health, and community integration for Canadians and newcomers.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTRO SECTION -->
+    <section class="intro-section">
+        <div class="container">
+            <div class="fade-up">
+                <h2>Newcomers Support</h2>
+                <p>Comprehensive services for successful settlement, resettlement and integration culturally, socially and economically.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES GRID -->
+    <section class="services-section">
+        <div class="container">
+            <div class="services-grid">
+                
+                <!-- Service 1: Settlement -->
+                <article class="service-card fade-up delay-1">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1200&auto=format&fit=crop" alt="Settlement and Resettlement Services">
+                        <div class="service-icon-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </div>
+                    </div>
+                    <div class="service-body">
+                        <h3>Settlement and Resettlement Services</h3>
+                        <p>Guiding newcomers through every step of their settlement journey, from initial orientation to long-term integration. We provide personalized support to help you build a stable foundation in your new home.</p>
+                    </div>
+                </article>
+
+                <!-- Service 2: Employment -->
+                <article class="service-card fade-up delay-2">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1200&auto=format&fit=crop" alt="Employment Aid">
+                        <div class="service-icon-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </div>
+                    </div>
+                    <div class="service-body">
+                        <h3>Employment Aid</h3>
+                        <p>Connecting our community and newcomers with job opportunities, career guidance, and skills development programs. We help you translate your experience into success in the Canadian workforce.</p>
+                    </div>
+                </article>
+
+                <!-- Service 3: Mentorship -->
+                <article class="service-card fade-up delay-3">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1200&auto=format&fit=crop" alt="Mentorship Program">
+                        <div class="service-icon-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </div>
+                    </div>
+                    <div class="service-body">
+                        <h3>Mentorship Program</h3>
+                        <p>Guiding our community and newcomers through personal and professional challenges. Our mentors provide wisdom, connections, and encouragement to help you navigate your new life with confidence.</p>
+                    </div>
+                </article>
+
+                <!-- Service 4: Mental Health -->
+                <article class="service-card fade-up delay-4">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=1200&auto=format&fit=crop" alt="Care and Mental Health Support">
+                        <div class="service-icon-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </div>
+                    </div>
+                    <div class="service-body">
+                        <h3>Care and Mental Health Support</h3>
+                        <p>Providing support for care, emotional well-being and societal resilience support services to Canadians and newcomers. We ensure you have access to the mental health resources you need to thrive.</p>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- MODERN LOCATION SECTION - FIXED -->
+    <section class="location-section">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="location-header fade-up">
+                <span class="location-label">Visit Us Today</span>
+                <h2>Location & Services</h2>
+                <p>We provide comprehensive support to Canadians and newcomers, including settlement and resettlement assistance, employment resources, and community integration services tailored to individual needs.</p>
+            </div>
+
+            <!-- Location Grid -->
+            <div class="location-grid">
+                <!-- Left: Info Cards in 2x2 Grid -->
+                <div class="location-info fade-up delay-1">
+                    <div class="info-cards-grid">
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            </div>
+                            <div class="info-content">
+                                <h4>Address</h4>
+                                <p>1940 Eglinton Ave E, Suite 400<br>Scarborough, ON M1L 4R1</p>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            </div>
+                            <div class="info-content">
+                                <h4>Phone</h4>
+                                <p>+1 647-606-6542</p>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            </div>
+                            <div class="info-content">
+                                <h4>Email</h4>
+                                <p>Immigrantmobility@yahoo.com</p>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            </div>
+                            <div class="info-content">
+                                <h4>Office Hours</h4>
+                                <p>Mon - Fri: 9:00 AM - 5:00 PM<br>Sat - Sun: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="https://maps.google.com/?q=1940+Eglinton+Ave+E+Scarborough+ON" target="_blank" class="directions-btn">
+                        Get Directions
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+
+                <!-- Right: Map -->
+                <div class="location-map fade-up delay-2">
+                    <div class="map-container">
+                        <div class="map-badge">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            <span>We're Here</span>
+                        </div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2881.5!2d-79.29!3d43.73!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDQzJzQ4LjAiTiA3OcKwMTcnMjQuMCJX!5e0!3m2!1sen!2sca!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <p>Empowering everyone through comprehensive community services.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                        <a href="#" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                        <a href="#" aria-label="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"></path></svg></a>
+                        <a href="#" aria-label="X"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <p class="footer-label">Phone number</p>
+                    <p class="footer-info">+1 647-606-6542</p>
+                    <p class="footer-label" style="margin-top: 1.5rem;">Email</p>
+                    <a href="mailto:Immigrantmobility@yahoo.com" class="footer-info footer-link">Immigrantmobility@yahoo.com</a>
+                </div>
+                <div class="footer-col">
+                    <p class="footer-label">MENTORSHIP</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Your email for contact" required>
+                        <button type="submit">Submit your support request</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="migrant.js"></script>
+</body>
+</html>

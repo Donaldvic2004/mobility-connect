@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community | Immigrant Mobility Connect</title>
+    <link rel="stylesheet" href="migrant.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           COMMUNITY PAGE STYLES (INLINE FOR GUARANTEED WORKING)
+           ========================================= */
+        
+        /* Page Hero */
+        .page-hero {
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-top: 80px; /* Offset for fixed header */
+        }
+
+        .hero-background {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: slowZoom 30s ease-in-out infinite alternate;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(26, 17, 17, 0.85) 0%, rgba(176, 109, 109, 0.6) 100%);
+        }
+
+        .hero-content-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 4rem 2rem;
+        }
+
+        .hero-text {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero-label {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #F5EBEB;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1.5rem;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            border: 1px solid rgba(176, 109, 109, 0.3);
+        }
+
+        .hero-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 500;
+            color: #fff;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text h1 em {
+            font-style: italic;
+            color: #F5EBEB;
+            font-weight: 400;
+        }
+
+        .hero-text p {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
+            max-width: 650px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Articles Section */
+        .articles-section {
+            padding: 6rem 0;
+            background: #FFFFFF;
+            position: relative;
+        }
+
+        .articles-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #EBE0E0, transparent);
+        }
+
+        .articles-section .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem auto;
+        }
+
+        .articles-section .section-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #B06D6D;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+            position: relative;
+            padding: 0 1rem;
+        }
+
+        .articles-section .section-label::before,
+        .articles-section .section-label::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 24px;
+            height: 1px;
+            background: #B06D6D;
+        }
+
+        .articles-section .section-label::before { left: -24px; }
+        .articles-section .section-label::after { right: -24px; }
+
+        .articles-section .section-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 0;
+            color: #6B5555;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .article-card {
+            background: #FFFFFF;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #EBE0E0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(176, 109, 109, 0.1);
+            border-color: #B06D6D;
+        }
+
+        .article-image-wrapper {
+            position: relative;
+            height: 260px;
+            overflow: hidden;
+        }
+
+        .article-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .article-card:hover .article-image-wrapper img {
+            transform: scale(1.08);
+        }
+
+        .article-tag {
+            position: absolute;
+            top: 1.25rem;
+            left: 1.25rem;
+            padding: 0.4rem 1rem;
+            background: #B06D6D;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 50px;
+            z-index: 2;
+        }
+
+        .article-body {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .article-body h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2C1E1E;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        .article-body p {
+            color: #6B5555;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .article-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 1.25rem;
+            border-top: 1px solid #EBE0E0;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: #6B5555;
+        }
+
+        .meta-dot {
+            color: #B06D6D;
+        }
+
+        .read-more {
+            color: #B06D6D;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .read-more:hover {
+            color: #965353;
+            gap: 0.6rem;
+        }
+
+        /* Contact Section - FIXED TO BE LIGHTER */
+        .contact-section {
+            position: relative;
+            padding: 6rem 0;
+            overflow: hidden;
+        }
+
+        .contact-background {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .contact-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* LIGHTER OVERLAY SO IMAGE IS CLEAR */
+        .contact-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(176, 109, 109, 0.25) 0%, rgba(44, 30, 30, 0.45) 100%);
+        }
+
+        .contact-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .contact-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #fff;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.2); /* Added for readability */
+        }
+
+        .contact-header p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.1rem;
+            text-shadow: 0 1px 6px rgba(0,0,0,0.15); /* Added for readability */
+        }
+
+        .contact-form-card {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .contact-form-card .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-form-card .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2C1E1E;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form-card .form-group input,
+        .contact-form-card .form-group textarea {
+            width: 100%;
+            padding: 0.9rem 1.25rem;
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            border: 1px solid #EBE0E0;
+            border-radius: 10px;
+            background: #FAFAFA;
+            color: #2C1E1E;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-sizing: border-box;
+        }
+
+        .contact-form-card .form-group input:focus,
+        .contact-form-card .form-group textarea:focus {
+            outline: none;
+            border-color: #B06D6D;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(176, 109, 109, 0.15);
+        }
+
+        .contact-form-card .form-group textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .contact-form-card .submit-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: #B06D6D;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .contact-form-card .submit-btn:hover {
+            background: #965353;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(176, 109, 109, 0.3);
+        }
+
+        .contact-form-card .form-success {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #F5EBEB;
+            border-radius: 10px;
+            text-align: center;
+            color: #4A2020;
+            font-weight: 500;
+        }
+
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-hero {
+                min-height: 50vh;
+            }
+            
+            .hero-content-container {
+                padding: 3rem 1.5rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-text p {
+                font-size: 1rem;
+            }
+            
+            .articles-section {
+                padding: 4rem 0;
+            }
+            
+            .article-image-wrapper {
+                height: 220px;
+            }
+            
+            .article-body {
+                padding: 1.5rem;
+            }
+            
+            .article-body h3 {
+                font-size: 1.2rem;
+            }
+            
+            .contact-section {
+                padding: 4rem 0;
+            }
+            
+            .contact-form-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo-link">
+                <img src="logo.png" alt="Logo" class="logo-image">
+                <span class="logo-text"></span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="community.html" class="active">Community</a></li>
+                    <li><a href="settlement.html">Settlement</a></li>
+                    <li><a href="employment.html">Employment</a></li>
+                    <li><a href="events.html">Events & Programs</a></li>
+                    <li><a href="services.html">Services</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="page-hero">
+        <div class="hero-background">
+            <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?q=80&w=1920&auto=format&fit=crop" alt="Community hands together" class="hero-image">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container hero-content-container">
+            <div class="hero-text fade-up">
+                <span class="hero-label">Together, we grow stronger</span>
+                <h1>Empowering Our<br>Community <em>Together</em></h1>
+                <p>Join our community for support in settlement, employment, mentorship, mental and health care, and integration.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ARTICLES SECTION -->
+    <section class="articles-section">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="section-label">Our Stories</span>
+                <h2>Community Voices</h2>
+                <p class="section-subtitle">Real stories of resilience, connection, and transformation from the people we serve.</p>
+            </div>
+
+            <div class="articles-grid">
+                <!-- Article 1 -->
+                <article class="article-card fade-up delay-1">
+                    <div class="article-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1200&auto=format&fit=crop" alt="Healthcare support for newcomers">
+                        <span class="article-tag">Holistic Support</span>
+                    </div>
+                    <div class="article-body">
+                        <h3>Empowering Our Community and Newcomers: A Holistic Approach to Support and Integration</h3>
+                        <p>At MobilityConnect, we provide comprehensive support for the community, focusing on settlement, employment, mentorship, health and mental care, and community integration. Our holistic approach ensures that every individual receives the resources and guidance needed to thrive in their new environment and build a successful future.</p>
+                        <div class="article-footer">
+                            <div class="article-meta">
+                                <span>May 8, 2024</span>
+                                <span class="meta-dot">·</span>
+                                <span>1 min read</span>
+                            </div>
+                            <a href="#" class="read-more">Read more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="article-card fade-up delay-2">
+                    <div class="article-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=1200&auto=format&fit=crop" alt="Community event and support">
+                        <span class="article-tag">Community</span>
+                    </div>
+                    <div class="article-body">
+                        <h3>Empowering Everyone: A Comprehensive Guide to Support and Integration</h3>
+                        <p>Discover how MobilityConnect offers holistic support for community, focusing on settlement, employment, mentorship, mental health, and community integration. Our approach ensures that newcomers thrive in their new environment, fostering resilience and connection within the community. Join us in creating a welcoming space for all.</p>
+                        <div class="article-footer">
+                            <div class="article-meta">
+                                <span>May 8, 2024</span>
+                                <span class="meta-dot">·</span>
+                                <span>1 min read</span>
+                            </div>
+                            <a href="#" class="read-more">Read more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-section" id="contact">
+        <div class="contact-background">
+            <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1920&auto=format&fit=crop" alt="Community gathering" class="contact-image">
+            <div class="contact-overlay"></div>
+        </div>
+        <div class="container contact-container">
+            <div class="contact-header fade-up">
+                <h2>Get in Touch</h2>
+                <p>We support immigrants in settlement, employment, and community integration.</p>
+            </div>
+            <div class="contact-form-card fade-up delay-1">
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">Your First Name</label>
+                            <input type="text" id="firstName" placeholder="Enter your first name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Your Last Name</label>
+                            <input type="text" id="lastName" placeholder="Enter your last name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email Address*</label>
+                        <input type="email" id="email" placeholder="Enter your email address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message*</label>
+                        <textarea id="message" placeholder="Type your message here" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Your Request</button>
+                    <div id="formSuccess" class="form-success">Thank you! We'll be in touch soon.</div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <p>Empowering everyone through comprehensive community services.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                        <a href="#" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                        <a href="#" aria-label="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"></path></svg></a>
+                        <a href="#" aria-label="X"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <p class="footer-label">Phone number</p>
+                    <p class="footer-info">+1 647-606-6542</p>
+                    <p class="footer-label" style="margin-top: 1.5rem;">Email</p>
+                    <a href="mailto:Immigrantmobility@yahoo.com" class="footer-info footer-link">Immigrantmobility@yahoo.com</a>
+                </div>
+                <div class="footer-col">
+                    <p class="footer-label">MENTORSHIP</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Your email for contact" required>
+                        <button type="submit">Submit your support request</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="migrant.js"></script>
+</body>
+</html>
