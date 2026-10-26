@@ -1223,25 +1223,58 @@ p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin-botto
         padding-bottom: 4px;
     }
 
+    /* --- FIX FOR HOME HERO SPACING --- */
+    .hero {
+        min-height: 100vh;
+        padding-top: 120px; /* Pushes content down so eyebrow isn't covered */
+        padding-bottom: 4rem;
+    }
+    .hero-eyebrow {
+        margin-bottom: 1.5rem;
+    }
+
+    /* --- FIX FOR TAB BAR ON MOBILE (SWIPEABLE) --- */
+    .tab-bar { 
+        flex-wrap: nowrap; 
+        overflow-x: auto; 
+        justify-content: flex-start;
+        padding: 0.4rem;
+        margin-bottom: 2rem;
+        scrollbar-width: none;
+    }
+    .tab-bar::-webkit-scrollbar { 
+        display: none; 
+    }
+    .tab-btn { 
+        flex: 0 0 auto; 
+        padding: 0.75rem 1.25rem; 
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
+    .tab-label { 
+        display: inline-block; /* Brings text labels back */
+    }
+    .tab-panel { 
+        padding: 2.5rem 1.75rem; 
+    }
+    .tab-panel h3 { 
+        font-size: 1.75rem; 
+    }
+    .tab-content-wrapper { 
+        min-height: 500px; 
+    }
+
     /* --- GENERAL MOBILE SPACING --- */
     .split-grid, .image-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .hero { min-height: 600px; }
     .section { padding: 5rem 0; }
     .image-grid .rounded-img { height: 280px; }
     .section-label::before, .section-label::after { display: none; }
     
     .hero-title { font-size: 2rem; }
     .hero-description { font-size: 1rem; }
-    .hero-cta { flex-direction: column; align-items: center; }
+    .hero-cta { flex-direction: column; align-items: center; width: 100%; }
+    .hero-cta a { width: 100%; text-align: center; justify-content: center; }
     .hero-scroll { display: none; }
-    
-    .tab-bar { flex-wrap: wrap; gap: 0.25rem; }
-    .tab-btn { flex: 1 1 calc(50% - 0.25rem); padding: 0.75rem; font-size: 0.85rem; }
-    .tab-label { display: none; }
-    .tab-btn { justify-content: center; }
-    .tab-panel { padding: 2.5rem 1.75rem; }
-    .tab-panel h3 { font-size: 1.75rem; }
-    .tab-content-wrapper { min-height: 500px; }
     
     .contact-form-card { padding: 2rem 1.5rem; }
     .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
