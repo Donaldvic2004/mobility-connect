@@ -354,22 +354,49 @@ p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin-botto
 }
 
 @media (max-width: 768px) {
-    /* --- FIXED MOBILE HEADER (Swipeable Nav) --- */
-    .header { position: fixed; }
+    /* --- MODERN MOBILE HEADER & SWIPEABLE NAV --- */
+    .header { position: fixed; background: rgba(255,255,255,0.98); }
     .nav-container { flex-direction: column; height: auto; padding: 0.75rem 0 0 0; gap: 0.5rem; }
     .logo-image { height: 36px; }
+    
     .nav-links { 
-        display: flex; flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start;
-        gap: 1.25rem; padding: 0.5rem 1rem 0.75rem 1rem; width: 100vw;
-        -webkit-overflow-scrolling: touch; scrollbar-width: none; 
+        display: flex; 
+        flex-wrap: nowrap; 
+        overflow-x: auto; 
+        justify-content: flex-start;
+        gap: 0.5rem; 
+        padding: 0.5rem 1rem 0.75rem 1rem; 
+        width: 100vw;
+        -webkit-overflow-scrolling: touch; 
+        scrollbar-width: none; 
+        
+        /* Adds a fade on the right side to show there are more links */
+        -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+        mask-image: linear-gradient(to right, black 85%, transparent 100%);
     }
     .nav-links::-webkit-scrollbar { display: none; }
-    .nav-links a { white-space: nowrap; font-size: 0.85rem; padding-bottom: 4px; }
+    
+    .nav-links a { 
+        white-space: nowrap; 
+        font-size: 0.85rem; 
+        padding: 0.5rem 1rem; 
+        border-radius: 50px; /* Modern pill shape */
+        color: var(--text-muted);
+        transition: all 0.3s ease;
+    }
+    
+    .nav-links a::after { display: none; } /* Hides the underline on mobile */
+    
+    .nav-links a.active { 
+        background: var(--wine-light); 
+        color: var(--wine-deep); 
+        font-weight: 600;
+    }
 
-    /* --- FIX FOR HOME HERO SPACING (No more cut-off text) --- */
+    /* --- FIX FOR HOME HERO SPACING --- */
     .hero {
         min-height: 100vh;
-        padding-top: 140px; /* Pushes the text down safely */
+        padding-top: 140px; 
         padding-bottom: 80px;
         align-items: center; 
     }
@@ -381,34 +408,10 @@ p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin-botto
     .hero-scroll { display: none; }
 
     /* --- MODERN TAB GRID (2x2 with Text & Icons) --- */
-    .tab-bar { 
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-        background: transparent;
-        border: none;
-        padding: 0;
-        margin-bottom: 2rem;
-    }
-    .tab-btn { 
-        flex-direction: column;
-        background: var(--bg-soft);
-        border: 1px solid var(--border);
-        padding: 1.25rem 0.5rem;
-        border-radius: 14px;
-        gap: 0.5rem;
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: var(--text-muted);
-    }
-    .tab-btn.active { 
-        background: var(--bg-primary);
-        border-color: var(--wine-main);
-        box-shadow: 0 6px 20px rgba(176, 109, 109, 0.15);
-        color: var(--wine-dark);
-        transform: translateY(-2px);
-    }
-    .tab-label { display: block; } /* Brings the text back! */
+    .tab-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; background: transparent; border: none; padding: 0; margin-bottom: 2rem; }
+    .tab-btn { flex-direction: column; background: var(--bg-soft); border: 1px solid var(--border); padding: 1.25rem 0.5rem; border-radius: 14px; gap: 0.5rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted); }
+    .tab-btn.active { background: var(--bg-primary); border-color: var(--wine-main); box-shadow: 0 6px 20px rgba(176, 109, 109, 0.15); color: var(--wine-dark); transform: translateY(-2px); }
+    .tab-label { display: block; } 
     .tab-icon svg { width: 22px; height: 22px; }
     .tab-panel { padding: 2.5rem 1.5rem; }
     .tab-panel h3 { font-size: 1.5rem; }
