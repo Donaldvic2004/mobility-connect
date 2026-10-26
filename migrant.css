@@ -589,39 +589,6 @@ p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin-botto
 .delay-3 { transition-delay: 0.3s; }
 .delay-4 { transition-delay: 0.4s; }
 
-/* RESPONSIVE */
-@media (max-width: 1024px) {
-    .services-grid { grid-template-columns: 1fr; }
-    .split-grid { gap: 3rem; }
-    .contact-grid { grid-template-columns: 1fr; }
-    .contact-image-card { min-height: 400px; }
-    .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
-}
-@media (max-width: 768px) {
-    .nav-container { flex-direction: column; height: auto; padding: 1rem; gap: 1rem; }
-    .nav-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
-    .split-grid, .image-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .hero { min-height: 600px; }
-    .section { padding: 5rem 0; }
-    .image-grid .rounded-img { height: 280px; }
-    .section-label::before, .section-label::after { display: none; }
-    .hero-title { font-size: 2rem; }
-    .hero-description { font-size: 1rem; }
-    .hero-cta { flex-direction: column; align-items: center; }
-    .hero-scroll { display: none; }
-    
-    .tab-bar { flex-wrap: wrap; gap: 0.25rem; }
-    .tab-btn { flex: 1 1 calc(50% - 0.25rem); padding: 0.75rem; font-size: 0.85rem; }
-    .tab-label { display: none; }
-    .tab-btn { justify-content: center; }
-    .tab-panel { padding: 2.5rem 1.75rem; }
-    .tab-panel h3 { font-size: 1.75rem; }
-    .tab-content-wrapper { min-height: 500px; }
-    
-    .contact-form-card { padding: 2rem 1.5rem; }
-    .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-} /* <--- FIXED: Added missing closing bracket here */
-
 /* =========================================
    COMMUNITY PAGE - CLEAN & PROPER
    ========================================= */
@@ -1011,60 +978,6 @@ p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin-botto
     font-weight: 500;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-    .articles-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 768px) {
-    .page-hero {
-        min-height: 50vh;
-    }
-    
-    .hero-content-container {
-        padding: 3rem 1.5rem;
-    }
-    
-    .hero-text h1 {
-        font-size: 2rem;
-    }
-    
-    .hero-text p {
-        font-size: 1rem;
-    }
-    
-    .articles-section {
-        padding: 4rem 0;
-    }
-    
-    .article-image-wrapper {
-        height: 220px;
-    }
-    
-    .article-body {
-        padding: 1.5rem;
-    }
-    
-    .article-body h3 {
-        font-size: 1.2rem;
-    }
-    
-    .contact-section {
-        padding: 4rem 0;
-    }
-    
-    .contact-form-card {
-        padding: 2rem 1.5rem;
-    }
-    
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 0;
-    }
-
-}
 /* Modern Location Section - Redesigned */
 .location-section {
     padding: 8rem 0;
@@ -1265,36 +1178,106 @@ p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin-botto
     filter: grayscale(0%) contrast(1.1) saturate(1);
 }
 
-/* Responsive */
+/* =========================================
+   RESPONSIVE (COMBINED & FIXED)
+   ========================================= */
 @media (max-width: 1024px) {
-    .location-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-    
-    .info-cards-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .map-container {
-        height: 450px;
-    }
+    .services-grid, .articles-grid, .intro-grid, .skills-grid, .help-grid { grid-template-columns: 1fr; }
+    .split-grid { gap: 3rem; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-image-card { min-height: 400px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .location-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .info-cards-grid { grid-template-columns: 1fr; }
+    .map-container { height: 450px; }
 }
 
 @media (max-width: 768px) {
-    .location-section {
-        padding: 5rem 0;
+    /* --- FIXED MOBILE HEADER & NAVIGATION --- */
+    .header { position: fixed; }
+    .nav-container { 
+        flex-direction: column; 
+        height: auto; 
+        padding: 0.75rem 0 0 0; 
+        gap: 0.5rem; 
     }
+    .logo-image { height: 36px; }
     
-    .location-header {
-        margin-bottom: 3rem;
+    .nav-links { 
+        display: flex;
+        flex-wrap: nowrap; 
+        overflow-x: auto; 
+        justify-content: flex-start;
+        gap: 1.25rem; 
+        padding: 0.5rem 1rem 0.75rem 1rem;
+        width: 100vw;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; 
     }
+    .nav-links::-webkit-scrollbar { 
+        display: none; 
+    }
+    .nav-links a { 
+        white-space: nowrap; 
+        font-size: 0.85rem;
+        padding-bottom: 4px;
+    }
+
+    /* --- GENERAL MOBILE SPACING --- */
+    .split-grid, .image-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hero { min-height: 600px; }
+    .section { padding: 5rem 0; }
+    .image-grid .rounded-img { height: 280px; }
+    .section-label::before, .section-label::after { display: none; }
     
-    .info-card {
-        padding: 1.25rem;
-    }
+    .hero-title { font-size: 2rem; }
+    .hero-description { font-size: 1rem; }
+    .hero-cta { flex-direction: column; align-items: center; }
+    .hero-scroll { display: none; }
     
-    .map-container {
-        height: 350px;
+    .tab-bar { flex-wrap: wrap; gap: 0.25rem; }
+    .tab-btn { flex: 1 1 calc(50% - 0.25rem); padding: 0.75rem; font-size: 0.85rem; }
+    .tab-label { display: none; }
+    .tab-btn { justify-content: center; }
+    .tab-panel { padding: 2.5rem 1.75rem; }
+    .tab-panel h3 { font-size: 1.75rem; }
+    .tab-content-wrapper { min-height: 500px; }
+    
+    .contact-form-card { padding: 2rem 1.5rem; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+    /* --- FIXES FOR PAGE HEROES (Community, Settlement, etc.) --- */
+    .page-hero {
+        margin-top: 120px !important; 
+        min-height: 50vh;
     }
+    .hero-content-container {
+        padding: 2rem 1.5rem !important;
+    }
+    .hero-text h1 {
+        font-size: 2rem !important;
+        line-height: 1.2 !important;
+    }
+    .hero-text p {
+        font-size: 0.95rem !important;
+    }
+    .hero-label {
+        font-size: 0.75rem !important;
+        padding: 0.4rem 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    /* Articles & Contact specific mobile */
+    .articles-section { padding: 4rem 0; }
+    .article-image-wrapper { height: 220px; }
+    .article-body { padding: 1.5rem; }
+    .article-body h3 { font-size: 1.2rem; }
+    .contact-section { padding: 4rem 0; }
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+
+    /* Location section mobile */
+    .location-section { padding: 5rem 0; }
+    .location-header { margin-bottom: 3rem; }
+    .info-card { padding: 1.25rem; }
+    .map-container { height: 350px; }
 }
