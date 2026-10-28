@@ -78,15 +78,19 @@ document.addEventListener('DOMContentLoaded', () => {
             navLinks.scrollTo({ left: scrollLeft, behavior: 'smooth' });
         }, 150); 
     }
-        // --- PARALLAX SCROLL EFFECT FOR HERO IMAGES ---
+           // --- PARALLAX SCROLL EFFECT FOR HERO IMAGES ---
     window.addEventListener('scroll', () => {
         const scrolled = window.scrollY;
         const heroImages = document.querySelectorAll('.hero-image, .hero-bg');
         
         heroImages.forEach(img => {
-            // Move the image down slightly as the user scrolls down
-            // We keep it scaled at 1.15 so empty edges don't show
-            img.style.transform = `translateY(${scrolled * 0.3}px) scale(1.15)`;
+            // Only animate if the image is currently visible on screen
+            if (img.getBoundingClientRect().bottom > 0) {
+                // Negative translateY moves the image UP as you scroll DOWN, 
+                // revealing the bottom of the picture.
+                // scale(1.3) ensures the image is big enough that it never shows a white gap.
+                img.style.transform = `translateY(${scrolled * -0.15}px) scale(1.3)`;
+            }
         });
     }, { passive: true });
 });
